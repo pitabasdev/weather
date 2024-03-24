@@ -3,10 +3,10 @@ const app = express();
 const mongoose = require("mongoose");
 const Weather = require("./model/weather");
 
-
 app.set("view engine", "ejs");
 
 app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
 
 mongoose
   .connect(
@@ -23,13 +23,10 @@ mongoose
     console.log(err);
   });
 
-app.use(express.urlencoded({ extended: true }));
-
 app.post("/weather/val1/:temp/val2/:humidity/val3/:rain/val4/:light", async (req, res) => {
     try {
       const { temp, humidity, rain, light } = req.params;
       
-   
       const newWeatherData = new Weather({
         temp: temp,
         humidity: humidity,
@@ -46,7 +43,6 @@ app.post("/weather/val1/:temp/val2/:humidity/val3/:rain/val4/:light", async (req
     }
 });
 
-
 app.get("/weather", async (req, res) => {
   try {
     const weatherData = await Weather.find();
@@ -57,8 +53,15 @@ app.get("/weather", async (req, res) => {
   }
 });
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
+// Render weather.ejs when accessing root route
+app.get("/", async (req, res) => {
+  try {
+    const weatherData = await Weather.find();
+    res.render("weather", { weatherData: weatherData });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to fetch weather data" });
+  }
 });
 
 app.listen(5000, () => {
