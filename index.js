@@ -23,7 +23,7 @@ mongoose
     console.log(err);
   });
 
-app.post("/weather/val1/:temp/val2/:humidity/val3/:rain/val4/:light", async (req, res) => {
+app.get("/weather/val1/:temp/val2/:humidity/val3/:rain/val4/:light", async (req, res) => {
     try {
       const { temp, humidity, rain, light } = req.params;
       
