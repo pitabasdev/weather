@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Data</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        h1 {
+            text-align: center;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+        /* CSS animations for table rows */
+        tr {
+            animation: fadein 0.5s ease-in-out;
+        }
+        @keyframes fadein {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+        .weather-icon {
+            height: 30px; /* Adjust height as needed */
+            margin-right: 5px; /* Add spacing between text and icon */
+            vertical-align: middle; /* Vertically center the icon */
+        }
+    </style>
+</head>
+<body>
+    <h1>Weather Data</h1>
+    <table border="1">
+        <tr>
+            <th>Temperature</th>
+            <th>Humidity</th>
+            <th>Rain</th>
+            <th>Light</th>
+        </tr>
+        <% weatherData.reverse().slice(0, 10).forEach(data => { %>
+            <tr>
+                <td>
+                    <%= data.temp %>
+                    <img class="weather-icon" src="temperature-icon.png" alt="Temperature Icon">
+                </td>
+                <td>
+                    <%= data.humidity %>
+                    <img class="weather-icon" src="humidity-icon.png" alt="Humidity Icon">
+                </td>
+                <td>
+                    <%= data.rain %>
+                    <img class="weather-icon" src="rain-icon.png" alt="Rain Icon">
+                </td>
+                <td>
+                    <%= data.light %>
+                    <img class="weather-icon" src="light-icon.png" alt="Light Icon">
+                </td>
+            </tr>
+        <% }); %>
+    </table>
+</body>
+</html>
