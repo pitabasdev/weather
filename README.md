@@ -28,7 +28,7 @@ Follow these instructions to set up the project on your local machine.
 
 2. Change to the project directory:
    ```sh
-   cd iot-weather-monitoring-system
+   cd weather
    ```
 
 3. Install dependencies:
@@ -56,7 +56,7 @@ Follow these instructions to set up the project on your local machine.
 ## 📁 Project Structure
 
 ```
-iot-weather-monitoring-system/
+weather/
 ├── index.js
 ├── package-lock.json
 ├── package.json
